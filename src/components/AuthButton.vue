@@ -1,8 +1,8 @@
 <template>
-  <div class="btn_box" @click="handleClick">
+  <button class="btn_box" @click="handleClick">
     <!-- 使用插槽:开发者在不同的使用场景,button中所展示的内容是有所不同的 -->
     <slot></slot>
-  </div>
+  </button>
 </template>
 
 <script>
@@ -18,6 +18,8 @@ export default {
 
 <style lang="scss" scoped>
   .btn_box {
+    width: 100%;
+    display: block;
     background-color: #cc3300;
     height: 48px;
     line-height: 48px;

@@ -7,10 +7,10 @@
       <i class="iconfont iconnew"></i>
     </div>
     <div class="username">
-      <auth-input placeholder="请输入用户名" v-model="username" :rules="/^1\d{4,6}$/" err-msg="用户名格式错误"></auth-input>
+      <auth-input placeholder="请输入用户名" v-model="username" :rules="/^1\d{4,10}$/" err-msg="用户名格式错误"></auth-input>
     </div>
     <div class="password">
-      <auth-input type="password" placeholder="请输入密码" v-model="password" :rules="/^\d{3,6}$/" err-msg="密码格式错误"></auth-input>
+      <auth-input type="password" placeholder="请输入密码" v-model="password" :rules="/^\d{2,6}$/" err-msg="密码格式错误"></auth-input>
     </div>
     <div class="login">
       <auth-button @click="login">登录</auth-button>
@@ -48,7 +48,7 @@ export default {
       if (res.data.statusCode === 401) {
         alert(res.data.message)
       } else {
-        alert('登录成功')
+        this.$router.push('/register')
       }
     }
   }
@@ -56,19 +56,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.hm-login{
+.hm-login {
   padding: 20px;
-  .close{
-    i{
+  .close {
+    i {
       font-size: 27px;
     }
   }
-  .logo{
+  .logo {
     text-align: center;
-    i{
+    i {
       font-size: 126px;
       color: #d81e06;
     }
+  }
+  .login {
+    // 自己根据情况确定按钮的位置,这里不是在组件封装中书写
+    margin-top: 20px;
   }
 }
 </style>

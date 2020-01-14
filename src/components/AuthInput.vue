@@ -46,11 +46,14 @@ export default {
       // 触发v-model语法糖中的@input事件
       const { value } = e.target
       this.$emit('input', value)
+
       if (!this.rules) return
-      if (this.rules.test(value)) {
+
+      if (this.rules.test(this.value)) {
         this.status = 'success'
       } else {
         this.status = 'error'
+        // 格式验证错误,就不应该发送请求了
       }
     }
   },
@@ -72,6 +75,7 @@ export default {
     height: 100%;
     background-color: transparent;
     border-bottom: 1px solid #666;
+    padding-bottom: 5px;
     font-size: 18px;
     &.error {
       border-bottom-color: red;
