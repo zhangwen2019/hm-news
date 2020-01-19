@@ -16,6 +16,8 @@ import AuthButton from './components/AuthButton'
 import HmNav from './components/hm-nav'
 // 返回上一级的组件
 import HmBack from './components/hm-back'
+// 用户公共头部组件
+import HmHeader from './components/hm-header'
 
 // 导入vant的button组件
 import { Button, Toast, Dialog } from 'vant'
@@ -28,12 +30,14 @@ Vue.component('AuthInput', AuthInput)
 Vue.component('AuthButton', AuthButton)
 Vue.component('HmNav', HmNav)
 Vue.component('HmBack', HmBack)
+Vue.component('HmHeader', HmHeader)
 
 // 在vue原型上注册
 Vue.use(Button)
 Vue.use(Toast)
 Vue.use(Dialog)
 Vue.config.productionTip = false
+
 // 设置全局axios
 Vue.prototype.$axios = axios
 // 设置全局的axios默认值(baseURL,基准路径会自动拼接url的参数,可以保证上线或者修改路径不会麻烦)

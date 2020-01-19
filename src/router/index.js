@@ -4,6 +4,7 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Profile from '../pages/Profile'
 import Index from '../pages/Index'
+import EditProfile from '../pages/EditProfile'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -15,20 +16,37 @@ const router = new VueRouter({
     { path: '/login', component: Login, name: 'login' },
     { path: '/register', component: Register, name: 'register' },
     { path: '/index', component: Index, name: 'index' },
-    { path: '/profile', component: Profile, name: 'profile' }
+    { path: '/profile', component: Profile, name: 'profile' },
+    { path: '/edit-profile', component: EditProfile, name: 'edit-profile' }
   ]
 })
 
+// 设置一个需要授权的路径
+const AuthUrls = [
+  '/profile',
+  '/edit-profile'
+]
 // 设置路由导航守卫
+
 router.beforeEach((to, from, next) => {
-  // 如果访问的是login和register页面直接放行
   if (to.path === '/login' || to.path === '/register') return next()
-  const tokenStr = localStorage.getItem('token')
-  // 如果localStorage中有了token就放行,没有就直接跳转到登陆界面(有权限的页面)
-  // 但是有一个问题(token会过期,或者token被造假)
-  if (!tokenStr) return next('/login')
-  next()
+  if (AuthUrls.includes(to.path)) {
+    const tokenStr = localStorage.getItem('token')
+    if (!tokenStr) return next('login')
+    // 有token信息直接放行
+    next()
+  }
 })
+
+// router.beforeEach((to, from, next) => {
+//   // 如果访问的是login和register页面直接放行
+//   if (to.path === '/login' || to.path === '/register') return next()
+//   const tokenStr = localStorage.getItem('token')
+//   // 如果localStorage中有了token就放行,没有就直接跳转到登陆界面(有权限的页面)
+//   // 但是有一个问题(token会过期,或者token被造假)
+//   if (!tokenStr) return next('/login')
+//   next()
+// })
 
 // 导出路由
 export default router
