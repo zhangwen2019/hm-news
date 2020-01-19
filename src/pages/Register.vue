@@ -1,8 +1,13 @@
 <template>
   <div class="hm-register">
-    <div class="close">
+    <!-- <div class="close">
       <i class="iconfont iconicon-test"></i>
-    </div>
+    </div> -->
+    <hm-back>
+      <template v-slot:icon>
+        <i class="iconfont iconicon-test"></i>
+      </template>
+    </hm-back>
     <div class="logo">
       <i class="iconfont iconnew"></i>
     </div>
@@ -43,6 +48,7 @@ export default {
   methods: {
     async register () {
       if (!this.form.username || !this.form.nickname || !this.form.password) return
+      // 但是刷新回丢失信息
       const res = await this.$axios.post('/register', this.form)
       console.log(res)
       if (res.data.statusCode === 400) {

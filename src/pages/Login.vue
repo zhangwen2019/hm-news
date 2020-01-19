@@ -1,8 +1,13 @@
 <template>
   <div class="hm-login">
-    <div class="close">
+    <!-- <div class="close" @click="back">
       <i class="iconfont iconicon-test"></i>
-    </div>
+    </div> -->
+    <hm-back>
+      <template v-slot:icon>
+        <i class="iconfont iconicon-test"></i>
+      </template>
+    </hm-back>
     <div class="logo">
       <i class="iconfont iconnew"></i>
     </div>
@@ -43,6 +48,7 @@ export default {
       // console.log(11)
       // 在表单校验成功后,可以发请求拿数据
       const res = await this.$axios.post('/login', {
+        // timeout: 2500,
         username: this.username,
         password: this.password
       })
@@ -50,9 +56,18 @@ export default {
       if (res.data.statusCode === 401) {
         this.$toast.fail('用户名不存在')
       } else {
+        // 用户第一次登陆成功,存储token
+        console.log(res)
+        const { token, user } = res.data.data
+        localStorage.setItem('token', token)
+        localStorage.setItem('user_id', user.id)
         this.$toast.success('登录成功')
         this.$router.push('/profile')
       }
+    },
+    back () {
+      // 返回历史页面
+      this.$router.go(-1)
     }
   }
 }
@@ -61,11 +76,6 @@ export default {
 <style lang="scss" scoped>
 .hm-login {
   padding: 20px;
-  .close {
-    i {
-      font-size: 27px;
-    }
-  }
   .logo {
     text-align: center;
     padding-bottom: 15px;

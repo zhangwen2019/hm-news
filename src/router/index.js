@@ -19,5 +19,16 @@ const router = new VueRouter({
   ]
 })
 
+// 设置路由导航守卫
+router.beforeEach((to, from, next) => {
+  // 如果访问的是login和register页面直接放行
+  if (to.path === '/login' || to.path === '/register') return next()
+  const tokenStr = localStorage.getItem('token')
+  // 如果localStorage中有了token就放行,没有就直接跳转到登陆界面(有权限的页面)
+  // 但是有一个问题(token会过期,或者token被造假)
+  if (!tokenStr) return next('/login')
+  next()
+})
+
 // 导出路由
 export default router
