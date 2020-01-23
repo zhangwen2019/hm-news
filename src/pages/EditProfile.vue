@@ -41,7 +41,7 @@ export default {
       }
     })
     this.loading = true
-    // 如果不发送请求,通过路由router,push带参数传过来,一刷新就没了
+    // 如果不发送请求,而是通过路由router,push带参数传过来,一刷新就没了
     console.log(res)
     this.profile = res.data.data
   },
