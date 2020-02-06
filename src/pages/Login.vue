@@ -54,7 +54,7 @@ export default {
       })
       console.log(res)
       if (res.data.statusCode === 401) {
-        this.$toast.fail('用户名不存在')
+        this.$toast.fail('用户名或密码错误')
       } else {
         // 用户第一次登陆成功,存储token
         console.log(res)
