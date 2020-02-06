@@ -71,7 +71,7 @@ axios.interceptors.response.use(function (response) {
 // 添加请求拦截器(如果有token带上token发送请求)
 axios.interceptors.request.use(function (config) {
   // config:请求的配置参数,通过config.headers来设置请求头
-  console.log('拦截到了请求', config)
+  // console.log('拦截到了请求', config)
   // 添加token信息
   const token = localStorage.getItem('token')
   if (token) {

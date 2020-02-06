@@ -5,6 +5,7 @@ import Register from '../pages/Register'
 import Profile from '../pages/Profile'
 import Index from '../pages/Index'
 import EditProfile from '../pages/EditProfile'
+import Follow from '../pages/Follow'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -17,14 +18,16 @@ const router = new VueRouter({
     { path: '/register', component: Register, name: 'register' },
     { path: '/index', component: Index, name: 'index' },
     { path: '/profile', component: Profile, name: 'profile' },
-    { path: '/edit-profile', component: EditProfile, name: 'edit-profile' }
+    { path: '/edit-profile', component: EditProfile, name: 'edit-profile' },
+    { path: '/follow', component: Follow, name: 'follow' }
   ]
 })
 
 // 设置一个需要授权的路径
 const AuthUrls = [
   '/profile',
-  '/edit-profile'
+  '/edit-profile',
+  '/follow'
 ]
 // 设置路由导航守卫
 

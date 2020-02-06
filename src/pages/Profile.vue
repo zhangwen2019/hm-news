@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="pro-list">
-      <hm-nav name="我的关注" desc="关注的用户"></hm-nav>
+      <hm-nav name="我的关注" @click="follow" desc="关注的用户"></hm-nav>
       <hm-nav name="我的跟帖" desc="跟帖/回复"></hm-nav>
       <hm-nav name="我的收藏" desc="文章/视频"></hm-nav>
       <hm-nav name="设置" @click="editProfile"></hm-nav>
@@ -36,6 +36,9 @@ export default {
       // console.log(e)
       // 编辑个人信息资料(跳转到edit界面)
       this.$router.push('/edit-profile')
+    },
+    follow () {
+      this.$router.push('/follow')
     },
     async logout () {
       // 清除token数据即可
