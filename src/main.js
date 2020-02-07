@@ -20,7 +20,7 @@ import HmBack from './components/hm-back'
 import HmHeader from './components/hm-header'
 
 // 导入vant的button组件
-import { Button, Toast, Dialog, Field, CellGroup, RadioGroup, Radio, Cell, Uploader } from 'vant'
+import { Button, Toast, Dialog, Field, CellGroup, RadioGroup, Radio, Cell, Uploader, List } from 'vant'
 // 全局导入axios组件(注意它不是vue的插件)
 import axios from 'axios'
 import moment from 'moment'
@@ -42,6 +42,7 @@ Vue.use(RadioGroup)
 Vue.use(Radio)
 Vue.use(Cell)
 Vue.use(Uploader)
+Vue.use(List)
 
 Vue.config.productionTip = false
 
@@ -82,8 +83,8 @@ axios.interceptors.request.use(function (config) {
 })
 
 // 设置全局的filter过滤器
-Vue.filter('filter-time', input => {
-  return moment(input).format('YYYY-MM-DD')
+Vue.filter('filter_time', (input, format = 'YYYY-MM-DD') => {
+  return moment(input).format(format)
 })
 
 new Vue({

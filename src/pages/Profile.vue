@@ -11,7 +11,7 @@
           <span>{{profile.username}}</span>
         </p>
         <!-- 使用过滤器以及moment包过滤时间 -->
-        <p>{{profile.create_date | filter-time}}</p>
+        <p>{{profile.create_date | filter_time}}</p>
       </div>
       <div class="icon">
         <i class="iconfont iconjiantou1"></i>
@@ -19,7 +19,7 @@
     </div>
     <div class="pro-list">
       <hm-nav name="我的关注" @click="follow" desc="关注的用户"></hm-nav>
-      <hm-nav name="我的跟帖" desc="跟帖/回复"></hm-nav>
+      <hm-nav name="我的跟帖" @click="comment" desc="跟帖/回复"></hm-nav>
       <hm-nav name="我的收藏" desc="文章/视频"></hm-nav>
       <hm-nav name="设置" @click="editProfile"></hm-nav>
       <hm-nav name="退出登录" @click="logout"></hm-nav>
@@ -39,6 +39,10 @@ export default {
     },
     follow () {
       this.$router.push('/follow')
+    },
+    comment () {
+      console.log(111)
+      this.$router.push('/comment')
     },
     async logout () {
       // 清除token数据即可

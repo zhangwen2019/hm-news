@@ -6,6 +6,9 @@ import Profile from '../pages/Profile'
 import Index from '../pages/Index'
 import EditProfile from '../pages/EditProfile'
 import Follow from '../pages/Follow'
+import Comment from '../pages/Comment'
+import Test from '../pages/Test'
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -19,7 +22,9 @@ const router = new VueRouter({
     { path: '/index', component: Index, name: 'index' },
     { path: '/profile', component: Profile, name: 'profile' },
     { path: '/edit-profile', component: EditProfile, name: 'edit-profile' },
-    { path: '/follow', component: Follow, name: 'follow' }
+    { path: '/follow', component: Follow, name: 'follow' },
+    { path: '/comment', component: Comment, name: 'comment' },
+    { path: '/test', component: Test, name: 'test' }
   ]
 })
 
@@ -27,7 +32,9 @@ const router = new VueRouter({
 const AuthUrls = [
   '/profile',
   '/edit-profile',
-  '/follow'
+  '/follow',
+  '/comment',
+  '/test'
 ]
 // 设置路由导航守卫
 

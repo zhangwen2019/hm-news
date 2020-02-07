@@ -8,7 +8,7 @@
       </div>
       <div class="center">
         <p class="name">{{item.nickname}}</p>
-        <p class="time">{{item.create_date | filter-time}}</p>
+        <p class="time">{{item.create_date | filter_time}}</p>
       </div>
       <div @click="unfollow(item.id)" class="right">取消关注</div>
     </div>
@@ -47,6 +47,8 @@ export default {
     },
     async unfollow (id) {
       // 取消关注需要发送ajax请求(取消关注的id值)
+      // 值得注意的是:组件的调用注册的是comfirm事件(知道是点击了确定按钮)
+      // 这里是确定弹框,调用confirm()方法
       try {
         await this.$dialog.confirm({
           title: '提示',

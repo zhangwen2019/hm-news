@@ -51,12 +51,12 @@ export default {
       // 但是刷新回丢失信息
       const res = await this.$axios.post('/register', this.form)
       console.log(res)
-      if (res.data.statusCode === 400) {
-        // 注册成功
+      if (res.data.statusCode === 401) {
+        // 注册失败
         this.$toast.fail('用户名已经存在')
       } else {
         this.$toast.success('注册成功')
-        // 登录成功,跳转登录页(将注册的信息传递给login界面)
+        // 注册成功,跳转登录页(将注册的信息传递给login界面)
         this.$router.push({
           name: 'login',
           params: {
