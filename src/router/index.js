@@ -8,6 +8,7 @@ import EditProfile from '../pages/EditProfile'
 import Follow from '../pages/Follow'
 import Comment from '../pages/Comment'
 import Test from '../pages/Test'
+import Star from '../pages/Star'
 
 Vue.use(VueRouter)
 
@@ -16,15 +17,17 @@ const router = new VueRouter({
     // 输入为'/'重定向到login界面(使用命名路由)
     // 如果使用path跳转，只能通过query
     // 如果使用name跳转， 可以通过params或者query(缺点:是写在url路径中的)传参
-    { path: '/', redirect: '/login' },
+    { path: '/', redirect: '/index' },
+    // { path: '/', component: Index, name: 'index' },
+    { path: '/index', component: Index, name: 'index' },
     { path: '/login', component: Login, name: 'login' },
     { path: '/register', component: Register, name: 'register' },
-    { path: '/index', component: Index, name: 'index' },
     { path: '/profile', component: Profile, name: 'profile' },
     { path: '/edit-profile', component: EditProfile, name: 'edit-profile' },
     { path: '/follow', component: Follow, name: 'follow' },
     { path: '/comment', component: Comment, name: 'comment' },
-    { path: '/test', component: Test, name: 'test' }
+    { path: '/test', component: Test, name: 'test' },
+    { path: '/star', component: Star, name: 'star' }
   ]
 })
 
@@ -34,16 +37,22 @@ const AuthUrls = [
   '/edit-profile',
   '/follow',
   '/comment',
-  '/test'
+  '/test',
+  '/star'
 ]
 // 设置路由导航守卫
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login' || to.path === '/register') return next()
+  // if (to.path === '/login' || to.path === '/register') return next()
   if (AuthUrls.includes(to.path)) {
     const tokenStr = localStorage.getItem('token')
-    if (!tokenStr) return next('login')
+    // 注意点: next('/login) 代表跳转到 '/login'
+    // (如果在首页跳转到(未登录)profile页面,发现没有token会强制跳转到login,会报错)
+    // 使用 router.push('/login) 就不会报错
+    if (!tokenStr) return router.push('/login')
     // 有token信息直接放行
+    next()
+  } else {
     next()
   }
 })

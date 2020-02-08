@@ -20,7 +20,7 @@
     <div class="pro-list">
       <hm-nav name="我的关注" @click="follow" desc="关注的用户"></hm-nav>
       <hm-nav name="我的跟帖" @click="comment" desc="跟帖/回复"></hm-nav>
-      <hm-nav name="我的收藏" desc="文章/视频"></hm-nav>
+      <hm-nav name="我的收藏" @click="star" desc="文章/视频"></hm-nav>
       <hm-nav name="设置" @click="editProfile"></hm-nav>
       <hm-nav name="退出登录" @click="logout"></hm-nav>
     </div>
@@ -41,8 +41,10 @@ export default {
       this.$router.push('/follow')
     },
     comment () {
-      console.log(111)
       this.$router.push('/comment')
+    },
+    star () {
+      this.$router.push('/star')
     },
     async logout () {
       // 清除token数据即可

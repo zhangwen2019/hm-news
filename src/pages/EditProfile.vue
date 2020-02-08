@@ -129,6 +129,7 @@ export default {
     async getProfile () {
       const userId = localStorage.getItem('user_id')
       const res = await this.$axios.get(`/user/${userId}`)
+      // 显示头像
       this.loading = true
       // 如果不发送请求拿数据,而是通过路由router,push带参数传过来,一刷新就没了
       console.log(res)
@@ -175,7 +176,7 @@ export default {
       this.editProfile({ gender: this.gender })
     },
     // 上传文件触发的回调函数
-    async afterRead (file) {
+    afterRead (file) {
       console.log(file)
 
       // 显示裁剪遮罩层
@@ -210,18 +211,17 @@ export default {
       // 获取截图的base64 数据
       this.$refs.cropper.getCropData(async imgData => {
         // do something
-        // 将裁剪的图片转成file文件,才能上传到服务器
+        // 将裁剪的图片的base64位数据转成file文件,才能上传到服务器
         const file = this.convertBase64UrlToBlob(imgData)
         const fd = new FormData()
         fd.append('file', file)
-
         // 上传到服务器
         const res = await this.$axios.post('/upload', fd)
         console.log(res)
         // 文件上传成功后,获取后台返回的地址,再次发请求修改图片
         const { statusCode, data } = res.data
         if (statusCode === 200) {
-          // 修改头像
+          // 修改头像(重新发送请求)
           this.editProfile({ head_img: data.url })
         }
         // 隐藏遮罩层

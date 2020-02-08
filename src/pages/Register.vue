@@ -13,13 +13,13 @@
     </div>
     <div class="username">
       <!-- 注意注册的用户名正则和登录的用户名正则应该一样 -->
-      <auth-input v-model="form.username" err-msg="用户名格式错误" placeholder="用户名/手机号码" :rules="/^1\d{4,10}$/"></auth-input>
+      <auth-input v-model="form.username" err-msg="用户名格式错误" placeholder="用户名/手机号码" :rules="/^1\d{3,10}$/"></auth-input>
     </div>
     <div class="nickname">
       <auth-input v-model="form.nickname" err-msg="昵称格式错误" placeholder="昵称" :rules="/^[\u4e00-\u9fa5a-zA-Z-z0-9]{3,8}$/"></auth-input>
     </div>
     <div class="password">
-      <auth-input type="password" v-model="form.password" err-msg="密码格式错误" placeholder="密码" :rules="/^[a-zA-Z0-9_]{4,6}$/"></auth-input>
+      <auth-input type="password" v-model="form.password" err-msg="密码格式错误" placeholder="密码" :rules="/^[a-zA-Z0-9_]{3,6}$/"></auth-input>
     </div>
     <div class="register">
       <auth-button @click="register">注册</auth-button>

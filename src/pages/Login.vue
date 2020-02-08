@@ -12,10 +12,10 @@
       <i class="iconfont iconnew"></i>
     </div>
     <div class="username">
-      <auth-input placeholder="请输入用户名" v-model="username" :rules="/^1\d{4,10}$/" err-msg="用户名格式错误"></auth-input>
+      <auth-input placeholder="请输入用户名" v-model="username" :rules="/^1\d{3,10}$/" err-msg="用户名格式错误"></auth-input>
     </div>
     <div class="password">
-      <auth-input type="password" placeholder="请输入密码" v-model="password" :rules="/^[a-zA-Z0-9_]{4,6}$/" err-msg="密码格式错误"></auth-input>
+      <auth-input type="password" placeholder="请输入密码" v-model="password" :rules="/^[a-zA-Z0-9_]{3,6}$/" err-msg="密码格式错误"></auth-input>
     </div>
     <div class="login">
       <!-- <auth-button @click="login">登录</auth-button> -->
