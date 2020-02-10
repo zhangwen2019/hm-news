@@ -1,5 +1,5 @@
 <template>
-  <div class="hm-post">
+  <div class="hm-post" @click="$router.push(`/postDetail/${post.id}`)">
     <!-- 根据数据的不同显示不同结构 -->
 
     <!-- type值为2,则为视频结构的内容 -->

@@ -20,7 +20,7 @@ import HmBack from './components/hm-back'
 import HmHeader from './components/hm-header'
 
 // 导入vant的button组件
-import { Button, Toast, Dialog, Field, CellGroup, RadioGroup, Radio, Cell, Uploader, List, Tab, Tabs } from 'vant'
+import { Button, Toast, Dialog, Field, CellGroup, RadioGroup, Radio, Cell, Uploader, List, Tab, Tabs, PullRefresh } from 'vant'
 // 全局导入axios组件(注意它不是vue的插件)
 import axios from 'axios'
 import moment from 'moment'
@@ -45,6 +45,7 @@ Vue.use(Uploader)
 Vue.use(List)
 Vue.use(Tab)
 Vue.use(Tabs)
+Vue.use(PullRefresh)
 
 Vue.config.productionTip = false
 

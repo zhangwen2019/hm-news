@@ -9,6 +9,7 @@ import Follow from '../pages/Follow'
 import Comment from '../pages/Comment'
 import Test from '../pages/Test'
 import Star from '../pages/Star'
+import PostDetail from '../pages/PostDetail'
 
 Vue.use(VueRouter)
 
@@ -17,8 +18,8 @@ const router = new VueRouter({
     // 输入为'/'重定向到login界面(使用命名路由)
     // 如果使用path跳转，只能通过query
     // 如果使用name跳转， 可以通过params或者query(缺点:是写在url路径中的)传参
-    { path: '/', redirect: '/index' },
-    // { path: '/', component: Index, name: 'index' },
+    // { path: '/', redirect: '/index' },
+    { path: '/', component: Index, name: '/' },
     { path: '/index', component: Index, name: 'index' },
     { path: '/login', component: Login, name: 'login' },
     { path: '/register', component: Register, name: 'register' },
@@ -27,7 +28,9 @@ const router = new VueRouter({
     { path: '/follow', component: Follow, name: 'follow' },
     { path: '/comment', component: Comment, name: 'comment' },
     { path: '/test', component: Test, name: 'test' },
-    { path: '/star', component: Star, name: 'star' }
+    { path: '/star', component: Star, name: 'star' },
+    // 跳转详情页,根据新闻(文章,视频)id的不同获取不同数据,渲染不同的结构
+    { path: '/postDetail/:id', component: PostDetail, name: 'postDetail' }
   ]
 })
 
