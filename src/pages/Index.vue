@@ -127,6 +127,9 @@ export default {
     onLoad () {
       console.log('触发了')
       // 发送请求加载更多的数据(下一页的数据)
+
+      // 有一个问题在finished为true时任然触发load事件(需要手动处理)
+      if (this.tabList[this.active].finished) return
       this.tabList[this.active].pageIndex++
       this.getPostList()
     },
