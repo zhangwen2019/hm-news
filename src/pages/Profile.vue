@@ -1,5 +1,6 @@
 <template>
   <div class="hm-profile">
+    <hm-header @click="$router.back()">个人中心</hm-header>
     <div class="pro-title" @click="editProfile">
       <div class="avator">
         <img v-show="loading" :src="avator" alt="">
@@ -21,6 +22,7 @@
       <hm-nav name="我的关注" @click="follow" desc="关注的用户"></hm-nav>
       <hm-nav name="我的跟帖" @click="comment" desc="跟帖/回复"></hm-nav>
       <hm-nav name="我的收藏" @click="star" desc="文章/视频"></hm-nav>
+      <hm-nav name="栏目管理" @click="$router.push('/tab-manager')" desc="自定义首页栏目"></hm-nav>
       <hm-nav name="设置" @click="editProfile"></hm-nav>
       <hm-nav name="退出登录" @click="logout"></hm-nav>
     </div>
@@ -107,6 +109,14 @@ export default {
 
 <style lang="scss" scoped>
   .hm-profile {
+    padding-top: 45px;
+    .hm-header {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      background-color: #f7f7f7;
+    }
     .pro-title {
       padding: 20px;
       display: flex;

@@ -8,10 +8,10 @@
         <div class="name">{{comment.user.nickname}}</div>
         <div class="time">{{comment.user.create_date | filter_time('YYYY-MM-DD HH:mm:ss')}}</div>
       </div>
-      <div class="reply" @click="reply">回复</div>
+      <div class="reply" @click="reply(comment.id, comment.user.nickname)">回复</div>
     </div>
     <!-- 回复楼层,并将parent数据传给子组件 -->
-    <hm-floor :index="index" v-if="comment.parent" :comment="comment.parent"></hm-floor>
+    <hm-floor @reply="reply" :index="index" v-if="comment.parent" :comment="comment.parent"></hm-floor>
     <div class="com_content">
       <p>{{comment.content}}</p>
     </div>
@@ -33,7 +33,7 @@ export default {
     comment: Object
   },
   methods: {
-    // 用于计算comment数据中心parent的层级
+    // 用于计算comment数据中的parent的层级
     getIndex (num, comment) {
       // 如果传递过来的comment有parent属性num++
       if (comment.parent) {
@@ -43,8 +43,9 @@ export default {
       }
     },
     // 用于回复评论
-    reply () {
-      this.$emit('reply', this.comment.id, this.comment.user.nickname)
+    reply (id, name) {
+      console.log(id, name)
+      this.$emit('reply', id, name)
     }
   }
 }

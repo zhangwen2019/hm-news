@@ -10,6 +10,7 @@ import Comment from '../pages/Comment'
 import Test from '../pages/Test'
 import Star from '../pages/Star'
 import PostDetail from '../pages/PostDetail'
+import TabManager from '../pages/TabManager'
 
 Vue.use(VueRouter)
 
@@ -30,7 +31,8 @@ const router = new VueRouter({
     { path: '/test', component: Test, name: 'test' },
     { path: '/star', component: Star, name: 'star' },
     // 跳转详情页,根据新闻(文章,视频)id的不同获取不同数据,渲染不同的结构
-    { path: '/postDetail/:id', component: PostDetail, name: 'postDetail' }
+    { path: '/postDetail/:id', component: PostDetail, name: 'postDetail' },
+    { path: '/tab-manager', component: TabManager, name: 'tab-manager' }
   ]
 })
 
@@ -41,7 +43,8 @@ const AuthUrls = [
   '/follow',
   '/comment',
   '/test',
-  '/star'
+  '/star',
+  '/tab-manager'
 ]
 // 设置路由导航守卫
 

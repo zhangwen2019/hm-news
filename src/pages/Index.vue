@@ -49,6 +49,7 @@
 // 局部注册post组件
 import HmPost from '../components/hm-post'
 export default {
+  name: 'index',
   data () {
     return {
       active: localStorage.getItem('token') ? 1 : 0,
@@ -72,27 +73,39 @@ export default {
   methods: {
     // 获取tab栏的所有的分类
     async getTabList () {
-      const res = await this.$axios.get('/category')
-      const { statusCode, data } = res.data
-      if (statusCode === 200) {
-        // this.tabList = data
-        // // 给tabList中每一个对象都存储一个内容的数据(通过添加一个postList属性)
-        // this.tabList.forEach(item => {
-        //   // item.postList = []
-        //   // 但是直接在tabList数据被vue劫持之后添加的属性不是响应式的
-        //   this.$set(item, 'postList', [])
-        // })
-        // // this.tabList = data
-        // console.log(this.tabList)
-
-        data.forEach(item => {
+      // 首页获取数据先从缓存中获取,如果没有发送ajax获取
+      const activeTabs = JSON.parse(localStorage.getItem('activeTabs'))
+      if (activeTabs) {
+        console.log('存在')
+        activeTabs.forEach(item => {
           item.postList = []
-          // 每个tab有自己的finished属性,每页是否加载完不一定是一样的
           item.finished = false
-          // 每个tab都有自己的pageIndex,记录了它加载到了第几页
           item.pageIndex = 1
         })
-        this.tabList = data
+        this.tabList = activeTabs
+      } else {
+        const res = await this.$axios.get('/category')
+        const { statusCode, data } = res.data
+        if (statusCode === 200) {
+          // this.tabList = data
+          // // 给tabList中每一个对象都存储一个内容的数据(通过添加一个postList属性)
+          // this.tabList.forEach(item => {
+          //   // item.postList = []
+          //   // 但是直接在tabList数据被vue劫持之后添加的属性不是响应式的
+          //   this.$set(item, 'postList', [])
+          // })
+          // // this.tabList = data
+          // console.log(this.tabList)
+
+          data.forEach(item => {
+            item.postList = []
+            // 每个tab有自己的finished属性,每页是否加载完不一定是一样的
+            item.finished = false
+            // 每个tab都有自己的pageIndex,记录了它加载到了第几页
+            item.pageIndex = 1
+          })
+          this.tabList = data
+        }
       }
     },
     // 获取当前分类下的内容数据
