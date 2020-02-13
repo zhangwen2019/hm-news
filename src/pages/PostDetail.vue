@@ -28,7 +28,6 @@
         <video :src="detail.content" controls></video>
       </div>
       <div class="content" v-else v-html="detail.content"></div>
-
       <!-- 点赞与微信分享 -->
       <div class="like_share">
         <div class="like">

@@ -4,7 +4,7 @@
       <div class="logo">
         <i class="iconfont iconnew"></i>
       </div>
-      <div class="search">
+      <div class="search" @click="$router.push('/search')">
         <i class="iconfont iconsearch"></i>
         <span>搜索新闻</span>
       </div>
@@ -76,7 +76,7 @@ export default {
       // 首页获取数据先从缓存中获取,如果没有发送ajax获取
       const activeTabs = JSON.parse(localStorage.getItem('activeTabs'))
       if (activeTabs) {
-        console.log('存在')
+        console.log('缓存有数据')
         activeTabs.forEach(item => {
           item.postList = []
           item.finished = false

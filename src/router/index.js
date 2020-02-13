@@ -11,6 +11,7 @@ import Test from '../pages/Test'
 import Star from '../pages/Star'
 import PostDetail from '../pages/PostDetail'
 import TabManager from '../pages/TabManager'
+import Search from '../pages/Search'
 
 Vue.use(VueRouter)
 
@@ -32,7 +33,8 @@ const router = new VueRouter({
     { path: '/star', component: Star, name: 'star' },
     // 跳转详情页,根据新闻(文章,视频)id的不同获取不同数据,渲染不同的结构
     { path: '/postDetail/:id', component: PostDetail, name: 'postDetail' },
-    { path: '/tab-manager', component: TabManager, name: 'tab-manager' }
+    { path: '/tab-manager', component: TabManager, name: 'tab-manager' },
+    { path: '/search', component: Search, name: 'search' }
   ]
 })
 
